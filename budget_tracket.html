@@ -54,11 +54,17 @@ document.getElementById("myForm").addEventListener("submit", function(event) {
     body: JSON.stringify(payload)
   })
   .then(response => {
-    // Handle the API response
-    // ...
+    if (response.ok) {
+      // Successful API call (status code 200)
+      alert("Expense Added!");
+    } else {
+      // Error in API call
+      alert("Error!");
+    }
   })
   .catch(error => {
     console.error("Error:", error);
+    alert("Error!"); // Network error or other exceptions
   });
 });
   </script>
