@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Expense Form</title>
+</head>
+<body>
+  <h1>Expense Form</h1>
+
+  <form id="myForm">
+    <label for="item">Item:</label>
+    <input type="text" id="item" name="item" placeholder="Enter item name" required>
+
+    <label for="category">Category:</label>
+    <input type="text" id="category" name="category" placeholder="Enter category" required>
+
+    <label for="payer">Payer:</label>
+    <input type="text" id="payer" name="payer" placeholder="Enter payer name" required>
+
+    <label for="share">Share:</label>
+    <input type="text" id="share" name="share" placeholder="Enter share" required>
+
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+
+    <label for="cost">Cost:</label>
+    <input type="text" id="cost" name="cost" placeholder="Enter cost" required>
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+document.getElementById("myForm").addEventListener("submit", function(event) {
+  event.preventDefault(); // Prevent form submission
+
+  // Get form data
+  var formData = new FormData(event.target);
+
+  // Construct the request payload object
+  var payload = {
+    items: formData.get("item"),
+    categories: formData.get("category"),
+    payer: formData.get("payer"),
+    share: formData.get("share"),
+    date: formData.get("date"),
+    cost: formData.get("cost")
+  };
+
+  // Send the POST request using fetch
+  fetch("https://n9mjzmdm7b.execute-api.us-east-2.amazonaws.com/prod/add_data_to_sheet", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(payload)
+  })
+  .then(response => {
+    // Handle the API response
+    // ...
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+});
+  </script>
+</body>
+</html>
