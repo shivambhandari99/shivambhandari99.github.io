@@ -4,87 +4,116 @@
   <title>Expense Form</title>
   <!-- Include Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <!-- Include Custom CSS for more styling (optional) -->
-  <link rel="stylesheet" href="styles.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      background-color: #222;
+      color: #fff;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: auto;
+      padding: 10px;
+    }
+
+    .form-control {
+      background-color: #333;
+      border-color: #777;
+      color: #fff;
+    }
+
+    .btn-primary {
+      background-color: #ff5722;
+      border-color: #ff5722;
+    }
+
+    .btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+      background-color: #e64a19;
+      border-color: #e64a19;
+    }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <h1 class="text-center mt-5">Expense Form</h1>
+  <div class="container mt-3">
+    <h1 class="text-center mb-4">Expense Form</h1>
     
-    <form id="myForm" class="mt-5">
-      <div class="form-group">
-        <label for="item">Item:</label>
-        <input type="text" class="form-control" id="item" name="item" placeholder="Enter item name" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="category">Category:</label>
-        <input type="text" class="form-control" id="category" name="category" placeholder="Enter category" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="payer">Payer:</label>
-        <input type="text" class="form-control" id="payer" name="payer" placeholder="Enter payer name" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="share">Share:</label>
-        <input type="text" class="form-control" id="share" name="share" placeholder="Enter share" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="date">Date:</label>
-        <input type="date" class="form-control" id="date" name="date" required>
-      </div>
-      
-      <div class="form-group">
-        <label for="cost">Cost:</label>
-        <input type="text" class="form-control" id="cost" name="cost" placeholder="Enter cost" required>
-      </div>
-      
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+    <div class="form-container">
+      <form id="myForm">
+        <div class="form-group">
+          <label for="item">Item:</label>
+          <input type="text" class="form-control" id="item" name="item" placeholder="Enter item name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="category">Category:</label>
+          <input type="text" class="form-control" id="category" name="category" placeholder="Enter category" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="payer">Payer:</label>
+          <input type="text" class="form-control" id="payer" name="payer" placeholder="Enter payer name" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="share">Share:</label>
+          <input type="text" class="form-control" id="share" name="share" placeholder="Enter share" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="date">Date:</label>
+          <input type="date" class="form-control" id="date" name="date" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="cost">Cost:</label>
+          <input type="text" class="form-control" id="cost" name="cost" placeholder="Enter cost" required>
+        </div>
+        
+        <button type="submit" class="btn btn-primary btn-block mt-4">Submit</button>
+      </form>
+    </div>
   </div>
   
   <script>
-document.getElementById("myForm").addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent form submission
+  document.getElementById("myForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
 
-  // Get form data
-  var formData = new FormData(event.target);
+    // Get form data
+    var formData = new FormData(event.target);
 
-  // Construct the request payload object
-  var payload = {
-    items: formData.get("item"),
-    categories: formData.get("category"),
-    payer: formData.get("payer"),
-    share: formData.get("share"),
-    date: formData.get("date"),
-    cost: formData.get("cost")
-  };
+    // Construct the request payload object
+    var payload = {
+      items: formData.get("item"),
+      categories: formData.get("category"),
+      payer: formData.get("payer"),
+      share: formData.get("share"),
+      date: formData.get("date"),
+      cost: formData.get("cost")
+    };
 
-  // Send the POST request using fetch
-  fetch("https://n9mjzmdm7b.execute-api.us-east-2.amazonaws.com/prod/add_data_to_sheet", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  })
-  .then(response => {
-    if (response.ok) {
-      // Successful API call (status code 200)
-      alert("Expense Added!");
-    } else {
-      // Error in API call
-      alert("Error!");
-    }
-  })
-  .catch(error => {
-    console.error("Error:", error);
-    alert("Error!"); // Network error or other exceptions
+    // Send the POST request using fetch
+    fetch("https://n9mjzmdm7b.execute-api.us-east-2.amazonaws.com/prod/add_data_to_sheet", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    })
+    .then(response => {
+      if (response.ok) {
+        // Successful API call (status code 200)
+        alert("Expense Added!");
+      } else {
+        // Error in API call
+        alert("Error!");
+      }
+    })
+    .catch(error => {
+      console.error("Error:", error);
+      alert("Error!"); // Network error or other exceptions
+    });
   });
-});
   </script>
 </body>
 </html>
