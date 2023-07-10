@@ -2,32 +2,50 @@
 <html>
 <head>
   <title>Expense Form</title>
+  <!-- Include Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <!-- Include Custom CSS for more styling (optional) -->
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <h1>Expense Form</h1>
-
-  <form id="myForm">
-    <label for="item">Item:</label>
-    <input type="text" id="item" name="item" placeholder="Enter item name" required>
-
-    <label for="category">Category:</label>
-    <input type="text" id="category" name="category" placeholder="Enter category" required>
-
-    <label for="payer">Payer:</label>
-    <input type="text" id="payer" name="payer" placeholder="Enter payer name" required>
-
-    <label for="share">Share:</label>
-    <input type="text" id="share" name="share" placeholder="Enter share" required>
-
-    <label for="date">Date:</label>
-    <input type="date" id="date" name="date" required>
-
-    <label for="cost">Cost:</label>
-    <input type="text" id="cost" name="cost" placeholder="Enter cost" required>
-
-    <button type="submit">Submit</button>
-  </form>
-
+  <div class="container">
+    <h1 class="text-center mt-5">Expense Form</h1>
+    
+    <form id="myForm" class="mt-5">
+      <div class="form-group">
+        <label for="item">Item:</label>
+        <input type="text" class="form-control" id="item" name="item" placeholder="Enter item name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <input type="text" class="form-control" id="category" name="category" placeholder="Enter category" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="payer">Payer:</label>
+        <input type="text" class="form-control" id="payer" name="payer" placeholder="Enter payer name" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="share">Share:</label>
+        <input type="text" class="form-control" id="share" name="share" placeholder="Enter share" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="date">Date:</label>
+        <input type="date" class="form-control" id="date" name="date" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="cost">Cost:</label>
+        <input type="text" class="form-control" id="cost" name="cost" placeholder="Enter cost" required>
+      </div>
+      
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+  
   <script>
 document.getElementById("myForm").addEventListener("submit", function(event) {
   event.preventDefault(); // Prevent form submission
